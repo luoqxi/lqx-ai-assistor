@@ -40,7 +40,11 @@ def process_txt_file(file_path):
             move_to_error_folder(file_path)
         else:
             prefixes = ['The image shows', 'The photo shows', 'The picture shows',
-                        'The image showcases', 'The image depicts', 'The image features']
+                        'The image showcases', 'The image depicts', 'The image features',
+                        'The image captures',
+                        'This image shows', 'This photo shows', 'This picture shows',
+                        'This image showcases', 'This image depicts', 'This image features',
+                        'this image captures']
             for prefix in prefixes:
                 if content.startswith(prefix):
                     content = content[len(prefix):].lstrip()
