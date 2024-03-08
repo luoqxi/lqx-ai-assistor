@@ -15,9 +15,14 @@ def is_empty_file(file_path):
     return os.path.exists(file_path) and os.path.getsize(file_path) == 0
 
 
+# def move_to_error_folder(file_path):
+#     os.rename(file_path, os.path.join(os.path.dirname(file_path),
+#                                       "error", os.path.basename(file_path)))
 def move_to_error_folder(file_path):
-    os.rename(file_path, os.path.join(os.path.dirname(file_path),
-                                      "error", os.path.basename(file_path)))
+    error_folder_path = os.path.join(os.path.dirname(file_path), "error")
+    os.makedirs(error_folder_path, exist_ok=True)
+    print(f"Moving file: {file_path}")  # ÃÌº”¥Ú”°”Ôæ‰
+    os.rename(file_path, os.path.join(error_folder_path, os.path.basename(file_path)))
 
 
 def process_txt_file(file_path):
