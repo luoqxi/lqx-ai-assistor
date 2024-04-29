@@ -9,6 +9,7 @@ from PIL import Image
 from compel import Compel, ReturnedEmbeddingsType
 import hpsv2
 import os
+import gc
 
 def convert_image_to_generation_width_height(width, height):
     # 定义标准尺寸
@@ -91,17 +92,26 @@ for subdir in tqdm(os.listdir(input_dir),position=0):
             guidance_scale = 7
             steps = 30
             # 生成图片
-            image = pipeline(prompt_embeds=conditioning, 
-                             pooled_prompt_embeds=pooled, 
+            pag_image = pipeline(prompt_embeds=conditioning, 
+                             pooled_prompt_embeds=pooled,
+                             # negative_prompt_embeds=negative_prompt_embeds,
+                             # negative_pooled_prompt_embeds=negative_pooled_prompt_embeds,
                              num_inference_steps=steps,
                              guidance_scale=guidance_scale,
                              width=width_height[0], 
-                             height=width_height[1]
+                             height=width_height[1],
+                             euler_at_final=True,
+                             pag_scale=10,
+                             pag_applied_layers_index=['m0']
                              ).images[0]
 
-            # image.show()
-            
-            image.save(output_file_path)
+            # pag_image.show()
+            pag_image.save(output_file_path)
+            del pag_image
+
+            #release memory
+            gc.collect()
+            torch.cuda.empty_cache()
 
             # Tried HPSv2 compared to original image
             # generated result: 0.36572265625
