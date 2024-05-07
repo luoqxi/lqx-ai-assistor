@@ -58,7 +58,7 @@ def start_tags(file_dir):
                  "content": [
                      {
                          "type": "text",
-                         "text": "请用英文详细描述这张图像。不要使用任何中文"
+                         "text": "请用英文详细描述这张图像。不要使用任何中文，不要分段落。"
                      },
                      {
                          "type": "image_url",
