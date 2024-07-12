@@ -7,7 +7,7 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-#### run
+#### gemini
 ```bash
 python geminipro-cap.py
 ```
@@ -15,4 +15,9 @@ python geminipro-cap.py
 #### cleaner
 ```bash
 python image-cleaner.py
+```
+
+### unet extract
+```bash
+python unet-extract.py
 ```
