@@ -1,4 +1,4 @@
-This project is a simple python script for describing images using the Gemini API.
+Some useful Python scripts.
 
 #### install
 ```bash
@@ -17,7 +17,7 @@ python geminipro-cap.py
 python image-cleaner.py
 ```
 
-### unet extract
+#### unet extract
 ```bash
 python unet-extract.py
 ```
